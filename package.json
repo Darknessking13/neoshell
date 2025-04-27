@@ -1,0 +1,33 @@
+{
+    "name": "neoshell",
+    "version": "0.1.0",
+    "description": "A low-level experimental containerization tool using Node.js and C++",
+    "main": "lib/run.js",
+    "bin": {
+        "nsi": "./bin/nsi.js"
+    },
+    "scripts": {
+        "build:cpp": "make -C src",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "container",
+        "namespace",
+        "isolation",
+        "nodejs",
+        "c++"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "commander": "^11.1.0",
+        "fs-extra": "^11.3.0",
+        "js-yaml": "^4.1.0",
+        "tar-fs": "^2.1.1",
+        "uuid": "^9.0.1"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}

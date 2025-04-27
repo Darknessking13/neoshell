@@ -1,0 +1,27 @@
+name: my-test-app
+version: 1.0.1
+
+# Files/Dirs relative to this yaml file
+include:
+  - app/
+  - package.json # Good practice to include these
+
+# Exclude things not needed in the image
+exclude:
+  - .git/
+  - tests/
+  - node_modules/ # Explicitly exclude before build step
+
+# Build steps run inside the temp build context (/app)
+build:
+  # No dependencies needed for this simple app
+  # - npm ci --production # Example: Use this if you have deps
+
+# Runtime configuration inside the container
+runtime:
+  cmd: ["/usr/bin/node", "/app/app.js"] # MUST use the path inside the container
+  workDir: /app
+  env:
+    NODE_ENV: production
+    PORT: 8080 # Example environment variable
+    MESSAGE: "Hello from config!"
