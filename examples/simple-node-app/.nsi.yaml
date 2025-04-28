@@ -1,0 +1,24 @@
+name: simple-node-app
+version: 1.0.0
+
+# Files to include in the image context
+include:
+  - app.js
+  - package.json
+  - package-lock.json # Important for reproducible installs
+
+# Files/dirs to exclude (node_modules is handled separately by build logic)
+exclude:
+  - .git/
+  - test/
+
+# Commands run on the HOST during 'nsi build' to prepare files
+build:
+  - npm ci --production # Install only production dependencies
+
+# Runtime configuration inside the container
+runtime:
+  cmd: ["node", "app.js"] # Command to run as PID 1
+  workDir: /app          # Working directory inside container
+  env:
+    NODE_ENV: production

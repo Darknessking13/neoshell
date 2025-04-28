@@ -1,33 +1,35 @@
 {
     "name": "neoshell",
     "version": "0.1.0",
-    "description": "A low-level experimental containerization tool using Node.js and C++",
-    "main": "lib/run.js",
+    "description": "Mini Container Runtime for Node.js",
+    "main": "src/cli/index.js",
     "bin": {
-        "nsi": "./bin/nsi.js"
+      "nsi": "./src/cli/index.js"
     },
     "scripts": {
-        "build:cpp": "make -C src",
-        "test": "echo \"Error: no test specified\" && exit 1"
+      "build:sandbox": "cmake -S . -B build && cmake --build build",
+      "start": "node src/cli/index.js",
+      "pkg": "npm run build:sandbox && pkg . --targets node18-linux-x64 --output dist/nsi --options experimental-enable-node-options --assets build/nsi-sandbox"
     },
-    "keywords": [
-        "container",
-        "namespace",
-        "isolation",
-        "nodejs",
-        "c++"
-    ],
-    "author": "Your Name",
-    "license": "MIT",
     "dependencies": {
-        "chalk": "^4.1.2",
-        "commander": "^11.1.0",
-        "fs-extra": "^11.3.0",
-        "js-yaml": "^4.1.0",
-        "tar-fs": "^2.1.1",
-        "uuid": "^9.0.1"
+      "chalk": "^4.1.2", 
+      "tar-fs": "^2.1.1", 
+      "uuid": "^9.0.1",   
+      "yaml": "^2.4.1",  
+      "yargs": "^17.7.2", 
+      "zlib": "^1.0.5"    
+    },
+    "devDependencies": {
+      "pkg": "^5.8.1" 
+    },
+    "pkg": {
+      "assets": [
+          "build/nsi-sandbox"
+      ]
     },
     "engines": {
-        "node": ">=16.0.0"
-    }
-}
+      "node": ">=18.0.0" 
+    },
+    "author": "Your Name",
+    "license": "MIT"
+  }

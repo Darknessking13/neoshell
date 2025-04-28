@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/nsi-sandbox.dir/src/sandbox/main.cpp.o" -o nsi-sandbox 
